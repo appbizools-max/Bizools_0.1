@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="./Images/Favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./Images/Favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./Images/Favicon.png" />
+  <link rel="manifest" href="./Images/site.webmanifest" />
+    <title>Lead Pipeline & Projects | Bizools</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #39457b;
+            --secondary-color: #e05a47;
+            --success-color: #2ecc71;
+            --warning-color: #f1c40f;
+            --info-color: #3498db;
+            --light-bg: #f8f9fa;
+            --indigo-light: #e1e5f3;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--light-bg);
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar-custom {
+            background-color: var(--primary-color);
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar-brand img {
+            height: 30px;
+        }
+
+        /* Sidebar/Tabs Nav */
+        .nav-pills-custom .nav-link {
+            border-radius: 12px;
+            padding: 12px 20px;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .nav-pills-custom .nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .nav-pills-custom .nav-link:hover:not(.active) {
+            background-color: var(--indigo-light);
+        }
+
+        /* Cards & Containers */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card-stat {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .card-stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        /* Table Styles */
+        .table-responsive {
+            border-radius: 12px;
+        }
+
+        .table thead th {
+            background-color: var(--indigo-light);
+            color: var(--primary-color);
+            font-weight: 700;
+            border: none;
+            padding: 15px;
+        }
+
+        .table td {
+            padding: 15px;
+            vertical-align: middle;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Badge Styles */
+        .badge-source {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        .badge-status {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .status-interested {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-notpicked {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-notinterested {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-new {
+            background: #e1f5fe;
+            color: #01579b;
+        }
+
+        .badge-service {
+            background: #f1f3f9;
+            color: var(--primary-color);
+            border: 1px solid #d1d9e6;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        /* Buttons */
+        .btn-action {
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            margin-right: 5px;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-interested {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn-update {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-notinterested {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .progress {
+            height: 10px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            background-color: var(--primary-color);
+        }
+
+        .project-card {
+            border-left: 5px solid var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.01);
+        }
+
+        .blog-thumb {
+            width: 80px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .sync-status {
+            font-size: 12px;
+            color: #fff;
+            background: rgba(46, 204, 113, 0.2);
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(46, 204, 113, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- AUTH CHECK SCRIPT -->
+    <script>
+        if (localStorage.getItem('bizools_auth') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./Images/Favicon.png" alt="Logo">
+                <span>BIZOOLS CRM</span>
+            </a>
+            <div class="ms-auto d-flex align-items-center">
+                <span class="sync-status me-3 text-white"><i class="bi bi-hdd-network-fill"></i> Live Sync Active</span>
+                <button class="btn btn-outline-light btn-sm" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist"
+                    aria-orientation="vertical">
+                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-leads" type="button"><i
+                            class="bi bi-funnel"></i> Leads</button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-interested" type="button"><i
+                            class="bi bi-star"></i> Interested</button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-ongoing" type="button"><i
+                            class="bi bi-rocket-takeoff"></i> Ongoing</button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-blogs" type="button"><i
+                            class="bi bi-journal-text"></i> Blogs</button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-delivered" type="button"><i
+                            class="bi bi-check-circle"></i> Delivered</button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-archived" type="button"><i
+                            class="bi bi-archive"></i> Archived</button>
+                </div>
+
+                <div class="card-stat mt-4">
+                    <h6 class="text-muted text-uppercase mb-3">Live Stats</h6>
+                    <div class="d-flex justify-content-between mb-2"><span>Leads</span><strong
+                            id="stat-leads">0</strong></div>
+                    <div class="d-flex justify-content-between mb-2"><span>Projects</span><strong
+                            id="stat-ongoing">0</strong></div>
+                    <div class="d-flex justify-content-between"><span>Blogs</span><strong id="stat-blogs">0</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="tab-content">
+                    <!-- LEADS -->
+                    <div class="tab-pane fade show active" id="tab-leads">
+                        <div class="section-card">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h4 class="fw-bold m-0">Leads Pipeline</h4>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addLeadModal"><i
+                                        class="bi bi-plus"></i> New Lead</button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Contact</th>
+                                            <th>Service</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="leadsBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- INTERESTED -->
+                    <div class="tab-pane fade" id="tab-interested">
+                        <div class="section-card">
+                            <h4 class="fw-bold mb-4">Interested Leads</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Contact</th>
+                                            <th>Service</th>
+                                            <th>Last Update</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="interestedBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGOING -->
+                    <div class="tab-pane fade" id="tab-ongoing">
+                        <div class="section-card">
+                            <h4 class="fw-bold mb-4">Ongoing Projects</h4>
+                            <div class="row" id="ongoingBody"></div>
+                        </div>
+                    </div>
+
+                    <!-- BLOGS -->
+                    <div class="tab-pane fade" id="tab-blogs">
+                        <div class="section-card">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h4 class="fw-bold m-0">Blog Management</h4>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBlogModal"><i
+                                        class="bi bi-plus"></i> New Blog</button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Title</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="blogsBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DELIVERED -->
+                    <div class="tab-pane fade" id="tab-delivered">
+                        <div class="section-card">
+                            <h4 class="fw-bold mb-4">Delivered Projects</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Project</th>
+                                            <th>Client</th>
+                                            <th>Value</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="deliveredBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ARCHIVED -->
+                    <div class="tab-pane fade" id="tab-archived">
+                        <div class="section-card">
+                            <h4 class="fw-bold mb-4">Not Interested</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Client</th>
+                                            <th>Phone</th>
+                                            <th>Service</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="archivedBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal fade" id="addLeadModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Lead</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addLeadForm">
+                        <div class="mb-3"><label>Name</label><input type="text" id="lName" class="form-control"
+                                required></div>
+                        <div class="mb-3"><label>Phone</label><input type="text" id="lPhone" class="form-control"
+                                required></div>
+                        <div class="mb-3"><label>Service</label><select id="lService" class="form-select">
+                                <option value="Web">Website</option>
+                                <option value="App">App Development</option>
+                                <option value="Design">Design</option>
+                            </select></div>
+                        <div class="mb-3"><label>Source</label><select id="lSource" class="form-select">
+                                <option value="Google">Google</option>
+                                <option value="Website">Website</option>
+                            </select></div>
+                        <button class="btn btn-primary w-100">Add Lead</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="updateStatusModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Status</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateStatusForm">
+                        <input type="hidden" id="upId">
+                        <div class="mb-3"><label>New Status</label>
+                            <select id="newStatus" class="form-select">
+                                <option value="New">New</option>
+                                <option value="Interested">Interested</option>
+                                <option value="Not Picked">Not Picked</option>
+                                <option value="Not Interested">Not Interested</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary w-100">Update Status</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="convertModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Convert to Project</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="convertForm">
+                        <input type="hidden" id="convId">
+                        <div class="mb-3"><label>Project Name</label><input type="text" id="pName" class="form-control"
+                                required></div>
+                        <div class="mb-3"><label>Deal Value ($)</label><input type="number" id="pValue"
+                                class="form-control" required></div>
+                        <button class="btn btn-success w-100">Start Project</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addBlogModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload Blog</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addBlogForm">
+                        <div class="mb-3"><label>Title</label><input type="text" name="title" class="form-control"
+                                required></div>
+                        <div class="mb-3"><label>Image</label><input type="file" name="image" class="form-control"
+                                accept="image/*" required></div>
+                        <div class="mb-3"><label>Content</label><textarea name="content" class="form-control" rows="8"
+                                required></textarea></div>
+                        <button class="btn btn-primary w-100" id="blogBtn">Publish to Live Server</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="progressModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Progress</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="progressForm">
+                        <input type="hidden" id="progId">
+                        <input type="range" class="form-range" id="progRange" min="0" max="100" step="10">
+                        <button class="btn btn-primary w-100 mt-3">Sync Progress</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let state = { leads: [], projects: [], delivered: [], blogs: [] };
+
+        async function loadData() {
+            try {
+                const crm = await (await fetch('api/sync_data.php')).json();
+                state.leads = crm.leads || [];
+                state.projects = crm.projects || [];
+                state.delivered = crm.delivered || [];
+                state.blogs = await (await fetch('api/get_blogs.php')).json();
+                render();
+            } catch (e) { }
+        }
+
+        async function sync() {
+    try {
+        const res = await fetch('api/sync_data.php', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(state)
+        });
+
+        const data = await res.text();
+        console.log("Server Response:", data);
+
+        loadData(); // refresh UI after save
+
+    } catch (error) {
+        console.error("Sync failed:", error);
+    }
+}
+
+        function render() {
+            document.getElementById('stat-leads').innerText = state.leads.filter(l => l.status !== 'Not Interested').length;
+            document.getElementById('stat-ongoing').innerText = state.projects.length;
+            document.getElementById('stat-blogs').innerText = state.blogs.length;
+
+            const leadsBody = document.getElementById('leadsBody');
+            leadsBody.innerHTML = state.leads.filter(l => l.status === 'New' || l.status === 'Not Picked').map(l => `<tr>
+                <td><strong>${l.name}</strong></td>
+                <td>${l.phone}</td>
+                <td><span class="badge-service">${l.service}</span></td>
+                <td><span class="badge-status status-${l.status.toLowerCase().replace(' ', '')}">${l.status}</span></td>
+                <td><button class="btn-action btn-update" onclick="openStatus(${l.id})"><i class="bi bi-telephone"></i></button></td>
+            </tr>`).join('');
+
+            const intBody = document.getElementById('interestedBody');
+            intBody.innerHTML = state.leads.filter(l => l.status === 'Interested').map(l => `<tr>
+                <td><strong>${l.name}</strong></td>
+                <td>${l.phone}</td>
+                <td>${l.service}</td>
+                <td>${l.date || '---'}</td>
+                <td>
+                    <button class="btn-action btn-update" onclick="openStatus(${l.id})"><i class="bi bi-clock"></i></button>
+                    <button class="btn-action btn-interested" onclick="openConvert(${l.id})"><i class="bi bi-briefcase"></i></button>
+                </td>
+            </tr>`).join('');
+
+            const ongBody = document.getElementById('ongoingBody');
+            ongBody.innerHTML = state.projects.map(p => `<div class="col-md-6 mb-3">
+                <div class="card card-stat project-card">
+                    <div class="d-flex justify-content-between"><h6>${p.name}</h6><strong>$${p.value}</strong></div>
+                    <div class="progress"><div class="progress-bar" style="width:${p.progress}%"></div></div>
+                    <div class="mt-2 text-end">
+                        <small class="me-3">${p.progress}%</small>
+                        <button class="btn btn-sm btn-outline-primary" onclick="openProgress(${p.id})">Update</button>
+                        <button class="btn btn-sm btn-success" onclick="deliver(${p.id})">Deliver</button>
+                    </div>
+                </div>
+            </div>`).join('');
+
+            const delBody = document.getElementById('deliveredBody');
+            delBody.innerHTML = state.delivered.map(p => `<tr><td>${p.name}</td><td>${p.client}</td><td>$${p.value}</td><td>${p.date}</td></tr>`).join('');
+
+            const archBody = document.getElementById('archivedBody');
+            archBody.innerHTML = state.leads.filter(l => l.status === 'Not Interested').map(l => `<tr><td>${l.name}</td><td>${l.phone}</td><td>${l.service}</td><td>${l.date}</td></tr>`).join('');
+
+            const blBody = document.getElementById('blogsBody');
+            blBody.innerHTML = state.blogs.map(b => `<tr>
+         <td>
+    <img src="uploads/${b.image.split('uploads/').pop()}" class="blog-thumb">
+</td>
+                <td>${b.title}</td>
+                <td>${b.date}</td>
+                <td><button class="btn btn-sm btn-danger" onclick="delBlog(${b.id})"><i class="bi bi-trash"></i></button></td>
+            </tr>`).join('');
+        }
+
+        document.getElementById('addLeadForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            state.leads.push({ id: Date.now(), name: document.getElementById('lName').value, phone: document.getElementById('lPhone').value, service: document.getElementById('lService').value, source: document.getElementById('lSource').value, status: 'New', date: new Date().toLocaleDateString() });
+            sync();
+            bootstrap.Modal.getInstance(document.getElementById('addLeadModal')).hide();
+        });
+
+        document.getElementById('updateStatusForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const l = state.leads.find(l => l.id == document.getElementById('upId').value);
+            l.status = document.getElementById('newStatus').value;
+            l.date = new Date().toLocaleDateString();
+            sync();
+            bootstrap.Modal.getInstance(document.getElementById('updateStatusModal')).hide();
+        });
+
+        document.getElementById('convertForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const id = document.getElementById('convId').value;
+            const l = state.leads.find(l => l.id == id);
+            state.projects.push({ id: Date.now(), name: document.getElementById('pName').value, client: l.name, value: document.getElementById('pValue').value, progress: 0 });
+            state.leads = state.leads.filter(l => l.id != id);
+            sync();
+            bootstrap.Modal.getInstance(document.getElementById('convertModal')).hide();
+        });
+
+        document.getElementById('progressForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const p = state.projects.find(p => p.id == document.getElementById('progId').value);
+            p.progress = document.getElementById('progRange').value;
+            sync();
+            bootstrap.Modal.getInstance(document.getElementById('progressModal')).hide();
+        });
+
+        function deliver(id) {
+            const p = state.projects.find(p => p.id == id);
+            p.date = new Date().toLocaleDateString();
+            state.delivered.push(p);
+            state.projects = state.projects.filter(p => p.id != id);
+            sync();
+        }
+
+        document.getElementById('addBlogForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const btn = document.getElementById('blogBtn');
+            btn.disabled = true; btn.innerText = "Syncing with public_html...";
+            await fetch('api/save_blog.php', { method: 'POST', body: new FormData(this) });
+            this.reset();
+            loadData();
+            bootstrap.Modal.getInstance(document.getElementById('addBlogModal')).hide();
+            alert("Blog published successfully 🚀");
+            btn.disabled = false; btn.innerText = "Publish to Live Server";
+        });
+
+        async function delBlog(id) {
+    if (confirm('Delete blog?')) {
+        await fetch(`api/save_blog.php?delete=${id}`);
+        loadData();
+    }
+}
+
+        function openStatus(id) { document.getElementById('upId').value = id; new bootstrap.Modal(document.getElementById('updateStatusModal')).show(); }
+        function openConvert(id) { document.getElementById('convId').value = id; new bootstrap.Modal(document.getElementById('convertModal')).show(); }
+        function openProgress(id) { document.getElementById('progId').value = id; new bootstrap.Modal(document.getElementById('progressModal')).show(); }
+        function logout() { localStorage.removeItem('bizools_auth'); window.location.href = 'login.html'; }
+
+        loadData();
+    </script>
+</body>
+
+</html>

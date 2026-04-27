@@ -1,0 +1,36 @@
+// Universal Mobile Optimization Script Inserter
+// This script will be used to update all HTML pages
+
+const pagesToUpdate = [
+    // Services pages
+    'services/website-development.html',
+    'services/mobile-app-development.html', 
+    'services/graphic-designing.html',
+    'services/digital-marketing.html',
+    
+    // App pages
+    'apps/food-delivery.html',
+    'apps/taxi-booking.html',
+    'apps/grocery-delivery.html',
+    'apps/hotel-booking.html',
+    'apps/real-estate.html',
+    'apps/logistics.html',
+    'apps/doctor-healthcare.html',
+    'apps/ott-platform.html',
+    'apps/social-media.html',
+    'apps/multi-vendor-ecommerce.html',
+    'apps/single-vendor-ecommerce.html',
+    'apps/delivery-app.html',
+    'apps/e-learning.html',
+    'apps/loan-lending.html',
+    'apps/beauty-salon.html',
+    'apps/short-video.html',
+    'apps/home-service.html'
+];
+
+// Script tag to add
+const mobileScriptTag = '<script src="./components/MobileOptimization.js"></script>';
+
+console.log('Pages to update:', pagesToUpdate.length);
+console.log('Add this script to each page before closing </body> tag:');
+console.log(mobileScriptTag);

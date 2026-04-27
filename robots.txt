@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /data/
+Disallow: /leadpipeline.html
+Disallow: /login.html
+
+Sitemap: https://bizools.in/sitemap.xml

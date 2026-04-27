@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GKPVM35FNL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-GKPVM35FNL');
+  </script>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+      <meta name="description" content="Bizools - Leading digital agency specializing in professional website development, high-performance mobile apps, and result-driven digital marketing.">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="IJOSzzjVL61zpFhQ3E-Ibd_fKx5YS7HXIzMZfK9z2yg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./Images/Favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./Images/Favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./Images/Favicon.png" />
+  <link rel="manifest" href="./Images/site.webmanifest" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <!-- Devicon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- App CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <title>Bizools Software Services | Best Website & Mobile App Development Company</title>
+</head>
+<body>
+  <div class="app">
+    <nav id="Navbar" class="navbar navbar-expand-lg navbar-light bg-transparent"></nav>
+    <div id="Herosection" class="position-relative"></div>
+    <div id="Features" class="features-section"></div>
+    <div id="Metric" class="section"></div>
+    <div id="AppShowcase" class="section py-0 overflow-hidden"></div>
+    <div id="CTA" class="bg-secondary-600"></div>
+    <a href="#" id="ArrowToTop"
+      class="arrow-back-to rounded-circle d-none align-items-center justify-content-center btn-theme-default">
+      <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/919963698908" class="whatsapp-float" target="_blank">
+      <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- MOBILE FLOATING ACTION BUTTONS -->
+    <div class="mobile-fab-container">
+      <a href="tel:+919963698908" class="mobile-fab fab-call" title="Call Us">
+        <i class="bi bi-telephone-fill"></i>
+      </a>
+      <a href="#" class="mobile-fab fab-back-to-top" id="mobileBackToTop" title="Back to Top">
+        <i class="bi bi-arrow-up"></i>
+      </a>
+    </div>
+  </div>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- App Component's JS -->
+  <script src="./components/Navbar.js"></script>
+  <script src="./components/Herosection.js"></script>
+  <script src="./components/Features.js"></script>
+  <script src="./components/Metrics.js"></script>
+  <script src="./components/Showcase.js"></script>
+  <script src="./components/CTA.js"></script>
+  <script src="./components/FormHandler.js"></script>
+  <script src="./components/LeadPopup.js"></script>
+  <script src="./components/MobileInteractions.js"></script>
+  <script src="./components/MobileOptimization.js"></script>
+  <script>
+
+    window.onload = function () {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    };
+  </script>
+  <script>
+    // Debug mobile navigation
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log('Bootstrap loaded:', typeof bootstrap !== 'undefined');
+      console.log('Offcanvas element:', document.getElementById('offcanvasNav'));
+      console.log('Toggler element:', document.querySelector('.navbar-toggler'));
+
+      // Test if offcanvas can be manually triggered
+      const offcanvasElement = document.getElementById('offcanvasNav');
+      if (offcanvasElement) {
+        const offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+        console.log('Offcanvas instance created:', offcanvas);
+      }
+    });
+
+    // Mobile back to top functionality
+    document.addEventListener('DOMContentLoaded', function () {
+      const mobileBackToTop = document.getElementById("mobileBackToTop");
+      if (mobileBackToTop) {
+        mobileBackToTop.addEventListener("click", function (e) {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        });
+
+        // Show/hide mobile back to top button based on scroll
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 300) {
+            mobileBackToTop.style.opacity = "1";
+            mobileBackToTop.style.visibility = "visible";
+          } else {
+            mobileBackToTop.style.opacity = "0";
+            mobileBackToTop.style.visibility = "hidden";
+          }
+        });
+      }
+    });
+  </script>
+  <script>
+    const ArrowToTop = document.getElementById("ArrowToTop");
+    window.onscroll = function () {
+      "use strict";
+      if (
+        document.body.scrollTop >= 800 ||
+        document.documentElement.scrollTop >= 800
+      ) {
+        ArrowToTop.classList.add("d-flex");
+        ArrowToTop.classList.remove("d-none");
+      } else {
+        ArrowToTop.classList.add("d-none");
+        ArrowToTop.classList.remove("d-flex");
+      }
+    };
+  </script>
+</body>
+
+</html>

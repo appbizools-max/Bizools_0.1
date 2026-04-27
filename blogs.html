@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GKPVM35FNL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-GKPVM35FNL');
+    </script>
+    <meta charset="UTF-8">
+        <meta name="description" content="Bizools Insights: Stay updated with the latest trends in technology, design, and business strategy. Expert stories and digital tips.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="IJOSzzjVL61zpFhQ3E-Ibd_fKx5YS7HXIzMZfK9z2yg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./Images/Favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./Images/Favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./Images/Favicon.png" />
+  <link rel="manifest" href="./Images/site.webmanifest" />
+    <title>Blogs | Bizools - Digital Insights & Stories</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #39457b;
+            --coral: #e05a47;
+            --text-main: #2d3436;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fafafa;
+            color: var(--text-main);
+        }
+
+        /* Matches app-hero-section from service pages */
+        .app-hero-section {
+            padding: 120px 0 80px;
+            background: #fff;
+        }
+
+        .ecosystem-badge {
+            background: rgba(224, 90, 71, 0.1);
+            color: var(--coral);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        /* Blog Card */
+        .blog-card {
+            background: white;
+            border-radius: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(57, 69, 123, 0.1);
+        }
+
+        .blog-img-wrapper {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .blog-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .blog-card:hover .blog-img {
+            transform: scale(1.1);
+        }
+
+        .blog-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-date {
+            color: #636e72;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .blog-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.3;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .blog-excerpt {
+            color: #636e72;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .read-more {
+            margin-top: auto;
+            color: var(--coral);
+            font-weight: 800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: gap 0.3s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .read-more:hover {
+            gap: 15px;
+            color: var(--coral);
+        }
+
+        /* Empty State */
+        .empty-blogs {
+            padding: 100px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Container -->
+    <nav class="navbar navbar-expand-lg sticky-top bg-white nav-scrolled" id="Navbar"></nav>
+
+    <section class="app-hero-section text-center pt-5 pb-4 mt-5">
+        <div class="container pt-5">
+            <h1 class="display-3 fw-800 mb-0" style="color: var(--primary);">
+                Bizools <span style="color: var(--coral);">Blogs</span>
+            </h1>
+        </div>
+    </section>
+
+    <section class="py-5 bg-white" style="border-radius: 60px 60px 0 0;">
+        <div class="container py-5">
+            <div class="row g-4" id="blogsGrid">
+                <!-- Blogs will be injected here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="noBlogsMessage" class="empty-blogs d-none">
+                <i class="bi bi-journal-x display-1 text-muted mb-4 d-block"></i>
+                <h3 class="fw-700 text-muted">No blogs published yet.</h3>
+                <p class="text-muted">Stay tuned for exciting updates!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="components/Navbar.js"></script>
+    <script src="components/LeadPopup.js"></script>
+    <script src="components/WhatsAppFloat.js"></script>
+    <script src="components/MobileOptimization.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const grid = document.getElementById('blogsGrid');
+            const noBlogsMsg = document.getElementById('noBlogsMessage');
+
+            try {
+                const res = await fetch('api/get_blogs.php');
+                const blogs = await res.json();
+
+                if (!blogs || blogs.length === 0) {
+                    noBlogsMsg.classList.remove('d-none');
+                    return;
+                }
+
+                blogs.forEach(blog => {
+                    const col = document.createElement('div');
+                    col.className = 'col-lg-4 col-md-6';
+
+                    // Truncate content for excerpt
+                    const excerpt = blog.content.length > 150 ? blog.content.substring(0, 150) + '...' : blog.content;
+
+                    col.innerHTML = `
+                        <div class="blog-card">
+                            <div class="blog-img-wrapper">
+                                <img src="${blog.image}" class="blog-img" alt="${blog.title}" onerror="this.src='./Images/apps/delivery.png'">
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-date"><i class="bi bi-calendar3"></i> ${blog.date}</div>
+                                <h3 class="blog-title">${blog.title}</h3>
+                                <p class="blog-excerpt">${excerpt}</p>
+                                <a href="blog.html?slug=${blog.slug}" class="read-more">KEEP READING <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(col);
+                });
+            } catch (err) {
+                console.error("Fetch error:", err);
+                noBlogsMsg.classList.remove('d-none');
+            }
+        });
+    </script>
+</body>
+
+</html>

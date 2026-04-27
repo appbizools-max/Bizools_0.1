@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GKPVM35FNL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-GKPVM35FNL');
+    </script>
+    <meta charset="UTF-8">
+        <meta name="description" content="Read the latest stories and insights from the Bizools blog. Expert knowledge on AI, SEO, and business strategy.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="IJOSzzjVL61zpFhQ3E-Ibd_fKx5YS7HXIzMZfK9z2yg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./Images/Favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./Images/Favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./Images/Favicon.png" />
+  <link rel="manifest" href="./Images/site.webmanifest" />
+    <title>Blog Details | Bizools</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #39457b;
+            --coral: #e05a47;
+            --text-main: #2d3436;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fafafa;
+            color: var(--text-main);
+        }
+
+
+        .blog-header {
+            padding: 140px 0 60px;
+            background: #fff;
+        }
+
+        .blog-category {
+            color: var(--coral);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .blog-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            color: var(--primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            text-transform: capitalize
+        }
+
+        .blog-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: #636e72;
+            font-weight: 600;
+        }
+
+        .blog-hero-image {
+            width: 100%;
+            max-height: 600px;
+            border-radius: 40px;
+            object-fit: cover;
+            box-shadow: 0 40px 80px rgba(57, 69, 123, 0.1);
+            margin: 40px 0;
+        }
+
+        .blog-content {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            max-width: 850px;
+            margin: 0 auto;
+            color: #444;
+            white-space: pre-wrap;
+            text-align: justify;
+        }
+
+        .btn-back {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            transition: transform 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn-back:hover {
+            transform: translateX(-5px);
+            color: var(--coral);
+        }
+
+        @media (max-width: 768px) {
+            .blog-title {
+                font-size: 2.5rem;
+            }
+
+            .blog-hero-image {
+                height: 300px;
+            }
+        }
+         #blogContainer{
+            margin-top:100px
+         }
+    </style>
+</head>
+
+
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg sticky-top bg-white nav-scrolled" id="Navbar"></nav>
+
+
+    <div class="container py-5" id="blogContainer">
+        <p>Loading blog...</p>
+    </div>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+    
+        const params = new URLSearchParams(window.location.search);
+        const slug = params.get("slug");
+    
+        const container = document.getElementById("blogContainer");
+    
+        if (!slug) {
+            container.innerHTML = "<h3>Blog not found</h3>";
+            return;
+        }
+    
+        try {
+            const res = await fetch("api/get_blogs.php");
+            const blogs = await res.json();
+    
+            const blog = blogs.find(b => String(b.slug).trim() === String(slug).trim());
+            if (!blog) {
+                container.innerHTML = "<h3>Blog not found</h3>";
+                return;
+            }
+    
+            container.innerHTML = `
+                <h1 class="mb-3 title fw-bold blog-title">${blog.title}</h1>
+                <p class="text-muted">${blog.date}</p>
+                <img src="${blog.image}" class="img-fluid mb-4" style="border-radius:12px;">
+                <div style="font-size:18px; line-height:1.8; blog-content">
+                    ${blog.content}
+                </div>
+    
+                <a href="blogs.html" class="btn btn-primary mt-4">← Back to Blogs</a>
+            `;
+    
+        } catch (err) {
+            container.innerHTML = "<h3>Error loading blog</h3>";
+            console.error(err);
+        }
+    });
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="components/Navbar.js"></script>
+<script src="components/LeadPopup.js"></script>
+<script src="components/WhatsAppFloat.js"></script>
+<script src="components/MobileOptimization.js"></script>
+    
+    </body>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="./Images/Favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./Images/Favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./Images/Favicon.png" />
+  <link rel="manifest" href="./Images/site.webmanifest" />
+    <title>Login | Bizools CRM</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #39457b;
+            --secondary-color: #e05a47;
+            --white: #ffffff;
+            --bg-gradient: linear-gradient(135deg, #39457b 0%, #1a224a 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header img {
+            height: 40px;
+            margin-bottom: 15px;
+        }
+
+        .login-header h2 {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(57, 69, 123, 0.1);
+        }
+
+        .btn-login {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-login:hover {
+            background: #2d3862;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(57, 69, 123, 0.3);
+            color: white;
+        }
+
+        .error-message {
+            color: var(--secondary-color);
+            font-size: 13px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+        }
+
+        .social-links {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .social-links p {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-card">
+        <div class="login-header">
+            <img src="./Images/Favicon.png" alt="Bizools Logo">
+            <h2>Bizools CRM</h2>
+            <p>Admin Login Panel</p>
+        </div>
+        <form id="loginForm">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-transparent border-end-0"><i class="bi bi-envelope"></i></span>
+                    <input type="email" class="form-control border-start-0" id="email" placeholder="Enter your email" required>
+                  
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-transparent border-end-0"><i class="bi bi-lock"></i></span>
+                    <input type="password" class="form-control border-start-0" id="password" placeholder="Enter your password" required>                </div>
+            </div>
+            <button type="submit" class="btn btn-login">Sign In</button>
+            <div id="errorMessage" class="error-message">Invalid email or password. Please try again.</div>
+        </form>
+        <div class="social-links">
+            <p>Accessing Secure Admin Dashboard</p>
+            <small class="text-muted" style="font-size: 10px;">&copy; 2024 Bizools Software Solutions</small>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (email === 'bizools@gmail.com' && password === 'Admin@123') {
+                localStorage.setItem('bizools_auth', 'true');
+                window.location.href = 'leadpipeline.html';
+            } else {
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+
+</html>
